@@ -12,3 +12,6 @@
 
 ___
 
+### Study location
+
+![](./Output/sitemap.png)

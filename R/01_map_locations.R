@@ -23,6 +23,10 @@ lakemap <- ggmap(lake) +
   scale_x_continuous(limits = c(-112, -111.5), expand = c(0, 0)) +
   scale_y_continuous(limits = c(40, 40.4), expand = c(0, 0))
 
+lakemap
+ggsave("./Output/sitemap.png")
+
+# add sampling locations ####
 lakemap +
   geom_point(aes(x = Longitude, y = Latitude, colour = pH), data = meta, size = 4) +
   scale_color_viridis_c(option = "magma")
