@@ -1,8 +1,8 @@
-# Utah_Lake_Fungi
+# Utah Lake Fungi
 
-UVU Mycology class project Fall 2021
+### UVU Mycology class project Fall 2021
 
-Student researchers:
+**Student researchers:**
 
   - Rollo Simmons
   - Braydon West
