@@ -2,9 +2,10 @@
 library(ggmap)
 library(maps)
 library(tidyverse)
+library(readxl)
 
 # load metadata ####
-
+meta <- read_xlsx("./Data/metadata.xlsx")
 
 
 # build map of sample locations ####
@@ -23,13 +24,7 @@ lakemap <- ggmap(lake) +
   scale_y_continuous(limits = c(40, 40.4), expand = c(0, 0))
 
 lakemap +
-  geom_point(aes(x = Longitude, y = Latitude, colour = BurnYear), data = df2, size = 4) +
+  geom_point(aes(x = Longitude, y = Latitude, colour = pH), data = meta, size = 4) +
+  scale_color_viridis_c(option = "magma")
   theme(legend.position="right")
 
-+ 
-   +
-  scale_colour_viridis_c() +
-  borders("state", colour = "dark blue", region = "utah", size = 2) +
-  theme(axis.title = element_blank(),
-        axis.text = element_blank(),
-        axis.ticks = element_blank())
