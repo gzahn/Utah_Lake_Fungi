@@ -58,8 +58,17 @@ ggsave("./Output/sitemap.png")
 
 # add sampling locations ####
 lakemap +
-  geom_point(aes(x = lon, y = lat,color = dist_from_geneva), data = meta, size = 3,alpha=.5) +
-  scale_color_viridis_c(option = "magma",end = .8) +
-  theme(legend.position="right")
+  geom_point(aes(x = lon, y = lat), data = meta, size = 2,alpha=.25) +
+  scale_color_viridis_c(end = .75) +
+  theme(legend.position="right",
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank()) +
+  labs(caption = "At each location, duplicate sediment and water samples were taken.")
 ggsave("./Output/sitemap_pH.png")
 ?geom_label
+
+
+
+# save updated metadata
+write_csv(meta,"./Data/updated_metadata.csv")
