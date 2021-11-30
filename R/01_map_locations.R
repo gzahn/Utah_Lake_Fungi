@@ -43,9 +43,14 @@ mapstyle = 'feature:all|element:labels|visibility:off&style=feature:water|elemen
 
 lake <- get_googlemap(center = c(lon = -111.85, lat = 40.2),
                 zoom = 10, scale = 2,
-                maptype='terrain',
+                maptype='roadmap',
                 style = mapstyle)
 ggmap(lake)
+
+
+lake2 <- get_map(c(lon = -111.85, lat = 40.2),
+                 zoom = 10, scale = 2,
+                 maptype = "watercolor")
 
 
 
@@ -53,19 +58,29 @@ lakemap <- ggmap(lake) +
   scale_x_continuous(limits = c(-112, -111.5), expand = c(0, 0)) +
   scale_y_continuous(limits = c(40, 40.4), expand = c(0, 0))
 
+lakemap2 <- ggmap(lake2) +
+  scale_x_continuous(limits = c(-112, -111.5), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(40, 40.4), expand = c(0, 0))
+
+
 lakemap
 ggsave("./Output/sitemap.png")
 
+lakemap2
+
 # add sampling locations ####
+
+meta$lat <- as.numeric(meta$lat)
+meta$lon <- as.numeric(meta$lon)
 lakemap +
-  geom_point(aes(x = lon, y = lat), data = meta, size = 2,alpha=.25) +
-  scale_color_viridis_c(end = .75) +
+  geom_point(aes(x = lon, y = lat), data = meta, size = 2,alpha=.25,shape=19) +
+  # scale_color_viridis_c(end = .75) +
   theme(legend.position="right",
         axis.text = element_blank(),
         axis.ticks = element_blank(),
         axis.title = element_blank()) +
   labs(caption = "At each location, duplicate sediment and water samples were taken.")
-ggsave("./Output/sitemap_pH.png")
+ggsave("./Output/sitemap.png")
 ?geom_label
 
 
